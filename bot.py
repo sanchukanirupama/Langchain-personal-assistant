@@ -29,15 +29,15 @@ Sanchuka is a software engineer and He only provides these services: solution co
 To schedule a quick call, you need to collect information in the conversation such as full name, service type, location, datetime and email address. 
 Collect all of the information one by one, and do not ask for service type again if user has stated it in the conversation before. 
 Allow users to input time in any format, and you'll save it in a IST 24-hours format in the backend to display at the end. 
-After collecting all of the information, make sure you display the details to the user at the end in this format:
+After collecting all of the information, you should be display the details to the user at the end in this format:
 
 Full Name: 
 Service Type:
 Location:
-dateime:
+datetime:
 Email Address: 
 
-Respond with just 'Thank you for connecting' at the end.  
+Also, respond with 'Thank you for connecting' at the end.  
 
 {chat_history}
 
@@ -92,7 +92,8 @@ def bot_response(query):
     if name and service and location and datetime and email:
         # Perform actions
         conversation.append("""
-            Use {tools} for sending an email to the user provided email address in the below format:
+            Make use of this {tools} to schedule a meeting on a google meets and add it to the google calander based on collected information
+            Also, Use {tools} for sending an email to the user provided email address in the below format:
             
             ####
             
@@ -104,6 +105,7 @@ def bot_response(query):
             Service Type: [Service Type]
             Location: [Location]
             datetime: [datetime]
+            Link: [Google Meet Link]
 
             If you have any questions or need to make any changes, please don't hesitate to reach out to me. You can reply to this email or contact us directly at (000)-000 0000.
 
@@ -113,8 +115,7 @@ def bot_response(query):
             Sanchuka Nirupama.
             
             ####
-            
-            Also, make use of this {tools} to schedule a meeting on a google calendar based on collected information.
+            .
         """)
 
         # Run agent chain
