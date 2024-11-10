@@ -1,22 +1,21 @@
 import streamlit as st
-from dotenv import load_dotenv
+import config
 import shelve
 
 from bot import bot_response
 
-load_dotenv()
 st.title("Personal Assistant")
 
 USER_AVATAR = "👤"
 BOT_AVATAR = "🤖"
 
-# Load chat history from shelve file
+# Load chat history
 def load_chat_history():
     with shelve.open("chat_history") as db:
         return db.get("messages", [])
 
 
-# Save chat history to shelve file
+# Save chat history
 def save_chat_history(messages):
     with shelve.open("chat_history") as db:
         db["messages"] = messages
